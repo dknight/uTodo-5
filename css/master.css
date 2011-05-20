@@ -62,7 +62,10 @@ h2 {
 #form_task input#task {
   width:70%;
 }
-
+#completed_tasks .task:hover,
+#current_tasks .task:hover {
+  background:#f4f5ff;
+}
 /* Completed tasks */
 #completed_tasks .task {
   padding:2px 10px;
@@ -70,9 +73,7 @@ h2 {
   background:transparent;
   width:50%;
 }
-.task:hover {
-  background:#f4f5ff;
-}
+
 #completed_tasks input.check_box {
   margin:0px 5px 0px 0px;
   padding:0;
