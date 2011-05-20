@@ -1,0 +1,116 @@
+body {
+  margin:0;
+  padding:0;
+  font-size: 10px;
+  text-align:center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+a:link {
+  color:#05c;
+}
+a:hover,
+a:active {
+  color:#c00;
+}
+a:visited {
+  color:purple;
+}
+#wrapper {
+  position:relative;
+  text-align:left;
+  font-size:120%;
+  margin-left:30px;
+}
+h2 {
+  margin:20px 0px 7px;
+  border-bottom:1px solid #ccc;
+  font-size:150%;
+  font-family: Georgia, serif;
+  font-weight:normal;
+  color:#666;
+}
+#content {
+  width:50%;
+}
+
+
+#current_tasks .task {
+  padding:10px;
+  position:relative;
+}
+#current_tasks {
+  font-size:150%;
+}
+#current_tasks input.check_box,
+#current_tasks span {
+  float:left;
+  display:block;
+}
+#current_tasks span {
+  width:90%;
+}
+#current_tasks input.check_box {
+  margin:5px 10px 0px 0px;
+  padding:0;
+}
+#current_tasks span {
+}
+#current_tasks .task:hover .delete {
+  display:block;
+}
+
+#form_task input#task {
+  width:70%;
+}
+
+/* Completed tasks */
+#completed_tasks .task {
+  padding:2px 10px;
+  position:relative;
+  background:transparent;
+  width:50%;
+}
+.task:hover {
+  background:#f4f5ff;
+}
+#completed_tasks input.check_box {
+  margin:0px 5px 0px 0px;
+  padding:0;
+  float:left;
+}
+#completed_tasks .delete {
+  display:inline;
+  margin-left:10px;
+  float:right;
+  position:relative;
+}
+#completed_tasks span {
+  padding:0px 5px;
+  font-size:100%;
+  color:#999;
+  display:block;
+  float:left;
+  width:70%;
+}
+
+.delete {
+  float:right;
+  display:none;
+  width:16px;
+  height:16px;
+  background:transparent url("../images/cross.png") no-repeat top left;
+}
+
+.error {
+  color:#fff;
+  background:#d00;
+  padding:5px;
+}
+footer {
+  margin:30px 0px 0px;
+  font-size:80%;
+}
+.clear {
+  visibility:hidden;
+  clear:both;
+}

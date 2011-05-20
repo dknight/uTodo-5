@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" manifest="cache.manifest">
+<head>
+  <meta charset="utf-8" />
+  <title>&micro;Todo 5</title>
+  <link rel="stylesheet" href="css/master.css" type="text/css" media="screen" />
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+<div id="wrapper">
+  
+  <header>
+    <h1>&micro;Todo 5</h1>
+  </header> <!-- end of header -->
+  
+  <div id="content">
+    <form action="#" id="form_task" method="get">
+      <div class="field">
+        <input type="text" name="task" id="task" placeholder="Type your new task" autofocus required />
+        <input type="submit" value="Add task" />
+      </div>
+    </form>
+    
+    <h2>Current tasks</h2>
+    <div id="current_tasks">
+      <!--<div class="task">
+        <input type="checkbox" name="complete" value="1" class="check_box" />
+        <span>
+          Foo bar ba rbabr abr abrabrb
+        </span>
+        <a href="#" class="delete">X</a>
+        <div class="clear"></div>
+      </div> -->
+      
+    </div>
+    
+    <h2>Completed tasks</h2>
+    <div id="completed_tasks">
+    </div>
+  </div> <!-- end of content -->
+  
+  <footer>
+    &copy; <a href="http://www.dmitri.me">Dmitri Smirnov</a>
+    | <a href="fdf#">Source</a>
+  </footer> <!-- end of footer -->
+  
+</div> <!-- end of wrapper -->
+
+<script src="js/jquery-1.6.1.min.js" type="text/javascript"></script>
+<script src="js/jquery.unserialize.js" type="text/javascript"></script>
+<script src="js/jquery.highlightFade.js" type="text/javascript"></script>
+<script src="js/app.js" type="text/javascript"></script>
+
+</body>
+</html>
