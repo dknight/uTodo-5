@@ -5,3 +5,5 @@ h2. Demonstrates HTML5 local storage engine and offline application.
 This application uses valid HTML5 markup. Instead of cookies I try to use here local storage engine. For input I tried new attributes like "autofocus", "placeholder" and "required" for built-in validation.
 
 This application can be available offline through cache.manifest file.
+
+"See the demo":http://dmitri.me/uTodo-5/
