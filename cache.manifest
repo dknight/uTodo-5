@@ -4,6 +4,7 @@ css/master.css
 js/jquery-1.6.1.min.js
 js/jquery.highlightFade.js
 js/jquery.unserialize.js
+js/html5.js
 js/app.js
 images/cross.png
 index.html
