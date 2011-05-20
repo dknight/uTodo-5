@@ -146,9 +146,11 @@ $(function() {
     
     // Loop existing tasks
     var collection = new Array();
-    for( task in localStorage) {
-        var data = $.unserialize(localStorage[task]);
-        collection.push(data);
+    if( localStorage.length > 0) { // This line fixes Firefox's 'null' bug.
+        for( task in localStorage) {
+            var data = $.unserialize(localStorage[task]);
+            collection.push(data);
+        }
     }
     collection.sort(sortByDate);
     for( var i = 0; i < collection.length; i++) {
