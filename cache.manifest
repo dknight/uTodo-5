@@ -1,10 +1,10 @@
 CACHE MANIFEST
 CACHE:
 css/master.css
-js/jquery-1.6.1.min.js
-js/jquery.highlightFade.js
+js/jquery-2.0.0.min.js
+js/jquery-ui.min.js
 js/jquery.unserialize.js
-js/html5.js
+js/html5shiv.js
 js/app.js
 images/cross.png
 index.html
