@@ -30,23 +30,28 @@
         </div>
       </form>
       
-      <h2>Current tasks</h2>
+      <h2 id="current_tasks_header">Current tasks</h2>
       <section id="current_tasks">
       </section>
       
-      <h2>Completed tasks</h2>
+      <h2 id="completed_tasks_header">Completed tasks</h2>
       <section id="completed_tasks">
       </section>
     </div> <!-- end of content -->
     
     <footer>
-      <a href="http://www.w3.org/QA/Tools/Donate" id="i_love_validator"><img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I ♥ Validator" title="W3C Validator Donation Program"></a>
+      <p id="disclaimer">
+        NB! This software stores your data only on this computer in current browser. Your data won't be available in any other place.
+      </p>
+      <a href="http://www.w3.org/QA/Tools/Donate" id="i_love_validator" target="_blank">
+        <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I ♥ Validator" title="W3C Validator Donation Program">
+      </a>
       &nbsp;&nbsp;&nbsp;&nbsp;
       &copy; <a href="http://www.whoop.ee/">Dmitri Smirnov</a>
-      &nbsp;&nbsp;<a href="https://github.com/dknight/uTodo-5">Source code</a>
-      <!-- TODO: use meter tag -->
+      &nbsp;&nbsp;<span id="licensed_under">Licensed under</span> <a href="license.txt">MIT</a>
+      &nbsp;&nbsp;<a href="https://github.com/dknight/uTodo-5" id="source_code">Source code</a>
       &nbsp;&nbsp;
-      Memory usage
+     <span id="memory_usage">Memory usage</span>
       <strong><span id="used_memory">0.00</span>
       <meter id="memory_meter" min="0.0" max="5.0" value="0.0" low="1.0" optimum="2.5" high="4.0">/</meter>
       <span id="max_memory">5.00 MB</span></strong>
@@ -56,7 +61,8 @@
   
   <script src="js/jquery-2.0.0.min.js"></script>
   <script src="js/jquery.unserialize.js"></script>
-  <script src="js/jquery-ui.min.js"></script>
+  <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="js/language.js"></script>
   <script src="js/app.js"></script>
 
 </body>

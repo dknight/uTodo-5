@@ -1,6 +1,6 @@
 
 html,body {
-  height:90%;
+  height:93%;
 }
 body {
   margin:0;
@@ -14,6 +14,9 @@ a:visited {
 }
 a:active {
   color:#f00;
+}
+a img {
+  border:none;
 }
 #i_love_validator {
   display:inline-block;
@@ -42,6 +45,11 @@ header {
   -moz-box-shadow:0px 2px 6px 0px rgba(0, 0, 0, 0.2);
   box-shadow:0px 2px 6px 0px rgba(0, 0, 0, 0.2);
   min-width:240px;
+}
+#lang {
+  position: absolute;
+  right:2em;
+  top:2.5em;
 }
 h1 {
   margin:0;
@@ -82,16 +90,10 @@ h2 {
 #current_tasks input[type='checkbox'] {
   margin:0.35em 1em 0 0;
   padding:0;
-  -webkit-transform: scale(1.2);
-  -moz-transform:  scale(1.2);
-  -ms-transform:  scale(1,2);
-  -o-transform:  scale(1.2);
-  transform:  scale(1.2);
 }
 #current_tasks .task:hover .delete {
   display:block;
 }
-
 #form_task input#task {
   width:70%;
   min-width:360px;
@@ -110,14 +112,14 @@ h2 {
 #current_tasks .task:hover {
   background:#f4f4f8;
 }
-/* Completed tasks */
+
+/* ---------------------------- Completed tasks ------------------------------- */
 #completed_tasks .task {
   padding:0.3em 1em;
   position:relative;
   background:transparent;
   width:70%;
 }
-
 #completed_tasks input[type='checkbox'] {
   margin:0 0.5em 0 0;
   padding:0;
@@ -137,7 +139,6 @@ h2 {
   float:left;
   width:70%;
 }
-
 .delete {
   float:right;
   display:none;
@@ -145,7 +146,6 @@ h2 {
   height:16px;
   background:transparent url("../images/cross.png") no-repeat top left;
 }
-
 .error {
   color:#fff;
   background:#d00;
@@ -159,7 +159,9 @@ h2 {
   background-image: -o-linear-gradient(#d00 50%, #b00);
   background-image: linear-gradient(#d00 50%, #b00);
 }
-
+#disclaimer {
+  color:#666;
+}
 footer {
   padding:3em 0 0;
   font-size:1em;

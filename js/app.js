@@ -1,38 +1,13 @@
-// id is a random number which identifies unique id of every task
-var id = getRandomId();
+// Define var here.
+var id, $currentTask, $clearDiv;
 
-// Just clearer
-var clearDiv = $("<div></div>").addClass("clear");
-
-// Template of task
-var $currentTask = $("<div></div>")
-                  .addClass("task")
-                  .append(
-                      $("<input></input>")
-                      .attr("type", "checkbox")
-                      .attr("name", "comlete")
-                      .addClass("check_box")
-                      .val("1")
-                  )
-                  .append(
-                      $("<span></span>")
-                  )
-                  .append(
-                      $("<a></a>")
-                      .addClass("delete")
-                      .attr("href", "#")
-                      .attr("title", "Delete?")
-                  )
-                  .append(clearDiv);
-
-/**
+  /**
  * Random ID generator.
  *
  * retrun integer
  */
-function getRandomId()
-{
-    return Math.round(Math.random()*100000000);
+function getRandomId() {
+    return Math.round(Math.random() * 100000000);
 }
 
 /**
@@ -42,8 +17,7 @@ function getRandomId()
  * param {boolean} hl
  * return void
  */
-function appendNewTask(data, hl)
-{
+function appendNewTask(data, hl) {
     var $newTask = $currentTask.clone();
     
     $newTask.attr("id", "task_" + data.id);
@@ -51,19 +25,19 @@ function appendNewTask(data, hl)
     $newTask.find("a.delete").attr("rel", data.id);
     $newTask.find("span").text(decodeURIComponent(data.text).replace(/\+/g, ' '));
     
-    data.completed = data.completed == 'true' ? true : false;
+    data.completed = data.completed === 'true' ? true : false;
     
-    if( data.completed) {
-        $newTask.find("input").attr("checked", "checked");
+    if (data.completed) {
+        $newTask.find(":checkbox").attr("checked", true);
     } else {
-        $newTask.find("input").removeAttr("checked");
+        $newTask.find(":checkbox").removeAttr("checked");
     }
     
-    $newTask.find(":checkbox").bind("change", function() {
-        if($(this).is(":checked")) {
+    $newTask.find(":checkbox").bind("change", function (event) {
+        if ($(this).is(":checked")) {
             data.completed = true;
             localStorage["utodo5.task." + data.id] = $.param(data);
-            $(this).parent().fadeOut("fast", function() {
+            $(this).parent().fadeOut("fast", function () {
                 $(this).prependTo("#completed_tasks").effect({
                     mode   : 'show',
                     effect : 'highlight'
@@ -72,29 +46,29 @@ function appendNewTask(data, hl)
         } else {
             data.completed = false;
             localStorage["utodo5.task." + data.id] = $.param(data);
-            $(this).parent().fadeOut("fast", function() {
+            $(this).parent().fadeOut("fast", function () {
                 $(this).appendTo("#current_tasks").fadeIn("fast");
             });
         }
     });
     
-    $newTask.find("a.delete").bind("click", function(event) {
+    $newTask.find("a.delete").bind("click", function (event) {
         event.preventDefault();
         $(this).parent().effect({
             mode   : 'hide',
             effect : 'highlight',
             color  : '#f44'
         },
-        function() {
+        function () {
             $(this).remove();
-        })
+        });
         deleteFromLocalStroge(data.id);
     });
     
-    if( data.completed) {
+    if (data.completed) {
         $("#completed_tasks").append($newTask);
     } else {
-        if ( hl ) {
+        if (hl) {
             $newTask.effect({
                 mode  : 'show',
                 effect: 'highlight'
@@ -110,14 +84,9 @@ function appendNewTask(data, hl)
  *
  * return void
  */
-function deleteFromLocalStroge(id)
-{
+function deleteFromLocalStroge(id) {
     localStorage.removeItem("utodo5.task." + id);
-    get_used_storage_size();
-}
-
-function supportsLocalStorage() {
-    return ('localStorage' in window) && window['localStorage'] !== null;
+    getUsedStorageSize();
 }
 
 /**
@@ -138,19 +107,49 @@ function sortByDate(a, b)
  *
  * return boolean
  */
-function supports_html5_storage() {
+function supportsHtml5Storage() {
     try {
-        return 'localStorage' in window && window['localStorage'] !== null;
+        return 'localStorage' in window && window.localStorage !== null;
     } catch (e) {
         return false;
     }
 }
 
-function get_used_storage_size()
-{
+function getUsedStorageSize() {
     var value = JSON.stringify(localStorage).length / Math.pow(1024, 2);
     $("#used_memory").html(value.toFixed(2));
     $("#memory_meter").val(value.toFixed(2));
+}
+function buildLangSelect() {
+    var $select = $('<select></select>')
+                    .attr("id", "lang")
+                    .appendTo("header")
+                    .bind('change', function (event) {
+                        var s = $(this).val();
+                        $("meta[name='description']").attr("content", labels[s].description);
+                        $("h1 span").html(labels[s].slogan);
+                        $("#task").attr("placeholder", labels[s].typeNewTask);
+                        $("#form_task :submit").val(labels[s].addTask);
+                        $("#current_tasks_header").html(labels[s].currentTasks);
+                        $("#completed_tasks_header").html(labels[s].completedTasks);
+                        $("#memory_usage").html(labels[s].memoryUsage);
+                        $("#source_code").html(labels[s].sourceCode);
+                        $("#disclaimer").html(labels[s].disclaimer);
+                        $("#licensed_under").html(labels[s].licensedUnder);
+                        $(".delete").attr("title", labels[s].del);
+                        localStorage['language'] = s;
+                    });
+    for (x in labels) {
+        var $option = $("<option></option>")
+                      .val(x)
+                      .html(labels[x].name);
+        $("#lang").append($option);
+        if (!localStorage['language']) {
+            localStorage['language'] = DEFAULT_LANGUAGE;
+        }
+    }
+    $("#lang option").attr("selected", false);
+    $("#lang option[value='" + localStorage['language']  + "']").attr("selected", true);
 }
 
 /**
@@ -158,27 +157,58 @@ function get_used_storage_size()
  */
 $(document).ready(function() {
     
-    if ( !supports_html5_storage() ) {
+    buildLangSelect();
+    $("#lang").trigger("change");
+    
+    // id is a random number which identifies unique id of every task
+    id = getRandomId();
+    
+    // Just clearer
+    $clearDiv = $("<div></div>").addClass("clear");
+    
+    // Template of task
+    $currentTask = $("<div></div>")
+                      .addClass("task")
+                      .append(
+                          $("<input></input>")
+                          .attr("type", "checkbox")
+                          .attr("name", "taskUID" + parseInt(Math.random()*1000000))
+                          .addClass("check_box")
+                          .val("1")
+                      )
+                      .append(
+                          $("<span></span>")
+                      )
+                      .append(
+                          $("<a></a>")
+                          .addClass("delete")
+                          .attr("href", "#")
+                          .attr("title", labels[localStorage['language']].del)
+                      )
+                      .append($clearDiv);
+    
+    if (!supportsHtml5Storage()) {
         $("body").prepend(
             $("<h4></h4>")
             .addClass("error")
-            .html("NB! Your browser doesn't support HTML5 local storage!<br />Please update your browser.")
+            .html(localStorage['language'].notSupport)
         );
         return;
     }
     
-    get_used_storage_size();
-
+    getUsedStorageSize();
     
     // Loop existing tasks
     var collection = new Array();
-    for( var i = 0; i < localStorage.length; i++) {
-        var key = localStorage.key(i);
-        var data = $.unserialize(localStorage[key]);
-        collection.push(data);
+    for (i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i),
+            data = $.unserialize(localStorage[key]);
+        if (key !== 'language') {
+            collection.push(data);
+        }
     }
     collection.sort(sortByDate);
-    for( var i = 0; i < collection.length; i++ ) {
+    for (i = 0; i < collection.length; i++) {
         appendNewTask(collection[i]);
     }
     
@@ -187,11 +217,16 @@ $(document).ready(function() {
         event.preventDefault();
         var value = $.trim($("#task").val());
         if (value) {
-            var id = getRandomId();
-            var stamp = new Date();
-            var data = { text: value, completed: false, id: id, stamp: stamp.getTime()}
+            var id = getRandomId(),
+                stamp = new Date(),
+                data = {
+                    text      : value,
+                    completed : false,
+                    id        : id,
+                    stamp     : stamp.getTime()
+                };
             appendNewTask(data, true);
-            get_used_storage_size();
+            getUsedStorageSize();
             localStorage["utodo5.task." + id] = $.param(data);
             id = getRandomId();
             
@@ -199,5 +234,12 @@ $(document).ready(function() {
             $("#task").val("");
         }
     });
+    
+    // Fix jQUery 2.0.0 and IE bug.
+    if (window.navigator.userAgent.match(/MSIE/i)) {
+        $("#completed_tasks :checkbox").each(function () {
+            $(this)[0].checked = true;
+        });
+    }
     
 }); // end of DOM ready

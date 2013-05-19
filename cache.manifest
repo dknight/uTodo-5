@@ -1,10 +1,16 @@
 CACHE MANIFEST
+
 CACHE:
 css/master.css
 js/jquery-2.0.0.min.js
-js/jquery-ui.min.js
+js/jquery-ui-1.10.3.custom.min.js
 js/jquery.unserialize.js
 js/html5shiv.js
+js/language.js
 js/app.js
 images/cross.png
 index.html
+license.txt
+
+NETWORK:
+http://www.w3.org/QA/Tools/I_heart_validator
