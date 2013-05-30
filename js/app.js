@@ -96,8 +96,7 @@ function deleteFromLocalStroge(id) {
  *
  * return integer
  */
-function sortByDate(a, b)
-{
+function sortByDate(a, b) {
     return parseInt(a.stamp) - parseInt(b.stamp)
 }
 
@@ -117,8 +116,7 @@ function supportsHtml5Storage() {
 
 function getUsedStorageSize() {
     var value = JSON.stringify(localStorage).length / Math.pow(1024, 2);
-    $("#used_memory").html(value.toFixed(2));
-    $("#memory_meter").val(value.toFixed(2));
+    $("#used_memory").html(value.toFixed(3));
 }
 function buildLangSelect() {
     var $select = $('<select></select>')
@@ -137,6 +135,8 @@ function buildLangSelect() {
                         $("#disclaimer").html(labels[s].disclaimer);
                         $("#licensed_under").html(labels[s].licensedUnder);
                         $(".delete").attr("title", labels[s].del);
+                        $("#hide_disclaimer").html(labels[s].hide);
+                        $("#clear_completed").html(labels[s].clear);
                         localStorage['language'] = s;
                     });
     for (x in labels) {
@@ -172,7 +172,7 @@ $(document).ready(function() {
                       .append(
                           $("<input></input>")
                           .attr("type", "checkbox")
-                          .attr("name", "taskUID" + parseInt(Math.random()*1000000))
+                          .attr("name", "taskUID" + parseInt(Math.random()*1000000000))
                           .addClass("check_box")
                           .val("1")
                       )
@@ -203,7 +203,7 @@ $(document).ready(function() {
     for (i = 0; i < localStorage.length; i++) {
         var key = localStorage.key(i),
             data = $.unserialize(localStorage[key]);
-        if (key !== 'language') {
+        if (key !== 'language' && key !== 'disclaimer_hidden') {
             collection.push(data);
         }
     }
@@ -232,6 +232,28 @@ $(document).ready(function() {
             
             // delete form data
             $("#task").val("");
+        }
+    });
+    
+    var $disclaimer = $("#disclaimer").parent();
+    $("#hide_disclaimer").click(function (event) {
+        event.preventDefault();
+        $disclaimer.slideUp("fast");
+        localStorage['disclaimer_hidden'] = true;
+    });
+    
+    if( localStorage['disclaimer_hidden'] ) {
+        $disclaimer.hide();
+    }
+    
+    $("#clear_completed").click( function (event) {
+        event.preventDefault();
+        if( window.confirm(labels[localStorage['language']].confirm) ) {
+            $("#completed_tasks .task").each(function () {
+                $(this).find("a.delete").trigger("click");
+            });
+        } else {
+            return false;
         }
     });
     

@@ -13,8 +13,11 @@ var labels = {
         disclaimer     : "NB! This software stores your data only on this computer in current browser. Your data won't be available in any other place.",
         notSupport     : "NB! Your browser doesn't support HTML5 local storage!<br />Please update your browser.",
         sourceCode     : 'Source code',
-        memoryUsage    : 'Memory usage',
-        licensedUnder  : 'Licensed under'
+        memoryUsage    : 'Memory used:',
+        licensedUnder  : 'Licensed under',
+        hide           : 'hide',
+        clear          : 'clear',
+        confirm        : 'Are you sure?'
     },
     'ru-RU' : {
         name           : 'Русский',
@@ -29,21 +32,27 @@ var labels = {
         notSupport     : "NB! Ваш браузер не поддерживает HTML5 local storage!<br />Пожалуста обновите свой браузер.",
         sourceCode     : 'Исходный код',
         memoryUsage    : 'Использовано памяти:',
-        licensedUnder  : 'Лицензия'
+        licensedUnder  : 'Лицензия',
+        hide           : 'скрыть',
+        clear          : 'очистить',
+        confirm        : 'Вы уверены?'
     },
     'et-EE' : {
-        name           : 'Eesti',
+        name           : 'Eesti keel',
         slogan         : 'pisike tööde juht',
         description    : "Kõige lihtsam tööde juht. Kasutab veebilehitseja local storage.",
-        typeNewTask    : 'Kirjuta töö nimi',
+        typeNewTask    : 'Sisesta töö nimi',
         addTask        : 'Lisa töö',
         currentTasks   : 'Jooksvad tööd',
-        completedTasks : 'Tehtud tödö',
+        completedTasks : 'Tehtud tööd',
         del            : 'Kustuta',
         disclaimer     : "NB! See tarkvara salvestab andmed ainult sellele arvutile ja veebilehitsejale. Teie andmed ei ole kättesaadavad teiselt arvutilt või/ja veebilehitsejalt.",
-        notSupport     : "NB! Teie veebilehitseja ei toeta HTML5 local storage!<br />Palun uuedage oma veebilehitsejat.",
+        notSupport     : "NB! Teie veebilehitseja ei toeta HTML5 local storage!<br />Palun uuendage oma veebilehitsejat.",
         sourceCode     : 'Lähtekood',
-        memoryUsage    : 'Kasutatud mälu',
-        licensedUnder  : 'Litsents'
+        memoryUsage    : 'Kasutatud mälu:',
+        licensedUnder  : 'Litsents',
+        hide           : 'peita',
+        clear          : 'puhasta',
+        confirm        : 'Kas olete kindel?'
     }
 };

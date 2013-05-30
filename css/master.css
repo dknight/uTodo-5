@@ -15,6 +15,14 @@ a:visited {
 a:active {
   color:#f00;
 }
+a.action {
+  text-decoration:none;
+  border-bottom:1px dashed #05c;
+}
+a.action.red {
+  border-color:#d00;
+  color:#d00;
+}
 a img {
   border:none;
 }
@@ -139,6 +147,12 @@ h2 {
   float:left;
   width:70%;
 }
+#clear_completed {
+  font-size:0.7em;
+  font-weight:normal;
+  position:relative;
+  top:-0.166667em;
+}
 .delete {
   float:right;
   display:none;
@@ -163,10 +177,9 @@ h2 {
   color:#666;
 }
 footer {
-  padding:3em 0 0;
+  position:relative;
+  margin:3em 0 0;
   font-size:1em;
-  position:absolute;
-  bottom:0;
 }
 
 .clear {
